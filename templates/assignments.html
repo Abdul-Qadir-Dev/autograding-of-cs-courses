@@ -10,6 +10,7 @@
   rel="stylesheet"
   href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
 />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <style>
@@ -38,7 +39,6 @@
     </style>
     <section>
         <div class="container" style="padding: 25px;">
-
             <div class="row">
                 <div class="col-md-6 ">
                     <h3 style="font-weight: bolder; " id="dmsheading">Assignments
@@ -64,18 +64,21 @@
                     <th scope="col">#</th>
                     <th scope="col">Assignment Title</th>
                     <th scope="col">Mark Assignments</th>
-                    <th scope="col">Edit</th>
                     <th scope="col">Delete</th>
                   </tr>
                 </thead>
                 <tbody class="table-body">
-                    <tr>
-                        <th>1</th>
-                        <td>PF Assignment</td>
-                        <td><i class="fas fa-external-link-alt btn btn-outline-success"></i></td>
-                        <td><i class="fas fa-edit btn btn-outline-primary"></i></td>
-                        <td><i class="fas fa-trash-alt btn btn-outline-danger"></i></td>
-                    </tr>
+                    {% for a in assignments %}
+                        <tr id="row-{{ loop.index }}">
+                            <th>{{ loop.index }}</th>
+                            <td>{{ a.title }}</td>
+                            <td><a class="btn btn-outline-success" href="{{ url_for('mark_assignment') }}">Mark Assignment</a></td>
+                            <td><form action="/delete_assignment/{{ a.assignment_id }}" method="POST"><button class="btn btn-outline-danger" type="submit" id="submit-btn">
+                                Delete
+                              </button></form></td>
+                        </tr>
+                    {% endfor %}
+                    
                 </tbody>
                 <tbody id="table-body"></tbody>
               </table>

@@ -43,9 +43,12 @@
               <a class="link" href="#about">About</a>
             </li>
             <li>
-              <a class="login-button" href="{{url_for('login_register')}}"
-                >Login / Register</a
-              >
+              {% if "logged_in_teacher_id" in session or "logged_in_ta_id" in session %}
+                <a class="login-button" href="{{url_for('profile')}}">Profile</a>
+                <a class="login-button" href="{{url_for('logout')}}">Log Out</a>
+              {% else %}
+              <a class="login-button" href="{{url_for('login_register')}}">Login / Register</a>
+              {% endif %}
             </li>
           </ul>
         </div>
@@ -64,27 +67,23 @@
             <h2>The Team</h2>
             <div class="team-names">
               <span class="fas fa-angle-right"></span>
-              <span class="text">Moiz</span>
+              <span class="text">Abdul Mueez</span>
             </div>
             <div class="team-names">
               <span class="fas fa-angle-right"></span>
-              <span class="text">Tajammul</span>
+              <span class="text">Tajammul Naeem</span>
             </div>
             <div class="team-names">
               <span class="fas fa-angle-right"></span>
-              <span class="text">M. Hammad</span>
+              <span class="text">M. Hammad Faisal</span>
             </div>
             <div class="team-names">
               <span class="fas fa-angle-right"></span>
-              <span class="text">Nabeel</span>
+              <span class="text">Nabeel Raza</span>
             </div>
             <div class="team-names">
               <span class="fas fa-angle-right"></span>
-              <span class="text">Hussnain</span>
-            </div>
-            <div class="team-names">
-              <span class="fas fa-angle-right"></span>
-              <span class="text">Ali Hassan</span>
+              <span class="text">Hussnain Ilyas</span>
             </div>
             <div class="team-names">
               <span class="fas fa-angle-right"></span>
